@@ -45,14 +45,14 @@ then
 	 p1=$(echo "$price1" | sed 's/,//')
 	 p2=$(echo "$price2" | sed 's/,//')
 	 compare=$(echo "scale=3; $p2 / $p1" | bc -l)
-	 if (( $( echo "$compare > 1.025"| bc -l) )); 
+	 if (( $( echo "$compare > 1.025"| bc -l) ));    #if percentage change is greater than 2.5%
 	      then
 	      msg1+=$(awk -v c=$count 'NR == c {print $1}' comp2.csv)
 	      msg1+=","
 	      check1=1
 	  fi 
 	  
-	  if (( $( echo "$compare < 0.975" | bc -l) ));
+	  if (( $( echo "$compare < 0.975" | bc -l) ));     #if percentage change is less than 2.5%
 	  then
 	  msg2+=$(awk -v c=$count 'NR == c {print $1}' comp2.csv)
 	  msg2+=","
